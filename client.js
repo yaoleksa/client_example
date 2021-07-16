@@ -26,7 +26,3 @@ req.onload = (event) => {
 req.open('POST', 'http://localhost:5000');
 req.setRequestHeader('Content-Type', 'text/plain');
 req.send('msg');
-
-req.open('GET', 'http://localhost:5000');
-req.setRequestHeader('Content-Type', 'text/plain');
-req.send();
