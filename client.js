@@ -15,8 +15,8 @@ req.onload = (event) => {
         method = 'GET';
         req.open(method, url);
         req.send();
+        text.value = req.responseText;
     }
-    text.value = req.responseText;
 }
 
 btn.addEventListener('click', function (event) {
