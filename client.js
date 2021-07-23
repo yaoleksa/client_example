@@ -1,4 +1,4 @@
-const req = new XMLHttpRequest();
+const socket = new WebSocket();
 const p = document.createElement('p');
 
 document.body.appendChild(p);
@@ -11,19 +11,18 @@ const state = {
     4: 'DONE'
 }
 
-req.onreadystatechange = (event) => {
-    p.innerHTML = state[req.readyState];
-}
-
-req.onerror = (event) => {
+socket.onerror = (event) => {
+    p.innerHTML = state[socket.readyState];
     console.log(event);
 }
 
-req.onload = (event) => {
-    p.innerHTML = req.response;
-    console.log(event);
+socket.onopen = (event) => {
+    const now = Date.now();
+    p.innerHTML = state[socket.readyState];
+    socket.send(`Connection is set at ${now.getDay()/now.getMonth(), now.getHours(),now.getMinutes()}`);
 }
 
-req.open('POST', 'http://localhost:5000');
-req.setRequestHeader('Content-Type', 'text/plain');
-req.send('msg');
+socket.onmessage = (event) => {
+    p.innerHTML = state[socket.readyState];
+    socket.send('msg');
+}
