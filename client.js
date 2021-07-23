@@ -19,7 +19,7 @@ socket.onerror = (event) => {
 socket.onopen = (event) => {
     const now = Date.now();
     p.innerHTML = state[socket.readyState];
-    socket.send(`Connection is set at ${now.getDay()/now.getMonth(), now.getHours(),now.getMinutes()}`);
+    socket.send('Connection is set.');
 }
 
 socket.onmessage = (event) => {
