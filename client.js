@@ -1,28 +1,26 @@
-const socket = new WebSocket();
-const p = document.createElement('p');
+const req = new XMLHttpRequest();
+const btn = document.querySelectorAll('button')[0];
+const text = document.querySelectorAll('textarea')[0];
+const url = 'http://localhost:5000';
 
-document.body.appendChild(p);
+let method;
 
-const state = {
-    0: 'UNSENT',
-    1: 'OPENED',
-    2: 'HEADERS_RECEIVED',
-    3: 'LOADING',
-    4: 'DONE'
-}
-
-socket.onerror = (event) => {
-    p.innerHTML = state[socket.readyState];
+req.onerror = (event) => {
+    text['placeholder'] = 'Error has occured. Connection with server not set.';
     console.log(event);
 }
 
-socket.onopen = (event) => {
-    const now = Date.now();
-    p.innerHTML = state[socket.readyState];
-    socket.send('Connection is set.');
+req.onload = (event) => {
+    if(method !== 'GET') {
+        method = 'GET';
+        req.open(method, url);
+        req.send();
+    }
+    text.value = req.responseText;
 }
 
-socket.onmessage = (event) => {
-    p.innerHTML = state[socket.readyState];
-    socket.send('msg');
-}
+btn.addEventListener('click', function (event) {
+    method = 'POST';
+    req.open(method, url);
+    req.send(text.value);
+});
