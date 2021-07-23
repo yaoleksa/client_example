@@ -21,6 +21,7 @@ req.onerror = (event) => {
 
 req.onload = (event) => {
     p.innerHTML = req.response;
+    console.log(event);
 }
 
 req.open('POST', 'http://localhost:5000');
