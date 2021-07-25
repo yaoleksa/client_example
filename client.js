@@ -11,18 +11,13 @@ req.onerror = (event) => {
     console.log(event);
 }
 
-req.onload = (event) => {
-    if(method !== 'GET') {
-        method = 'GET';
-        req.open(method, url);
-        req.send();
-        text.value = req.responseText;
-        console.log('Get was called.');
-    }
-    console.log('onload');
-}
+btnGet.addEventListener('click', function (event){
+    method = 'GET';
+    req.open(method, url);
+    req.send();
+})
 
-btn.addEventListener('click', function (event) {
+btnPost.addEventListener('click', function (event) {
     method = 'POST';
     req.open(method, url);
     req.send(text.value);
