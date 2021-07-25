@@ -19,6 +19,7 @@ req.onload = (event) => {
         text.value = req.responseText;
         console.log('Get was called.');
     }
+    console.log('onload');
 }
 
 btn.addEventListener('click', function (event) {
