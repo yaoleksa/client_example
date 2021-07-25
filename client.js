@@ -14,7 +14,7 @@ req.onerror = (event) => {
 btnGet.addEventListener('click', function (event){
     method = 'GET';
     req.open(method, url);
-    req.send();
+    req.send(req.response);
     text.value = req.response;
     console.log(req.response);
 })
