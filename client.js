@@ -1,5 +1,6 @@
 const req = new XMLHttpRequest();
-const btn = document.querySelectorAll('button')[0];
+const btnPost = document.querySelectorAll('button')[0];
+const btnGet = document.querySelectorAll('button')[1];
 const text = document.querySelectorAll('textarea')[0];
 const url = 'http://localhost:5000';
 
@@ -16,6 +17,7 @@ req.onload = (event) => {
         req.open(method, url);
         req.send();
         text.value = req.responseText;
+        console.log('Get was called.');
     }
 }
 
