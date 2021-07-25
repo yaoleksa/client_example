@@ -15,6 +15,8 @@ btnGet.addEventListener('click', function (event){
     method = 'GET';
     req.open(method, url);
     req.send();
+    text.value = req.responseText;
+    console.log('Get was called.');
 })
 
 btnPost.addEventListener('click', function (event) {
